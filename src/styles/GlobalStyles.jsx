@@ -2,30 +2,26 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 const GlobalStyles = createGlobalStyle`
-    @font-face {
-   font-family: 'Roboto';
-    font-style: normal;
-    src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-    /* 여기에서 폰트 웨이트를 설정하여 폰트를 한 번에 가져옵니다. */
-    font-weight: 400, 700;
-}
+
 @font-face {
-        font-family: 'S-CoreDream';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://fonts.gstatic.com/s/abrilfatface/v13/zOL64pLDlL1D99S8g8PtiKVggez9NBs2QBBbGUYlhMRdwrM.ttf') format('ttf');
+  }
 
     :root {
         /* 메인 색상 */
-        --primary-color:#7CB45B;
+        --primary-color:#E6DCC1;
+        --back-color:#f2f2f2;
         --primary-disabled-color:#B9D2AB;
         /* 폰트 색상 */
-        --font-primary-color:#767676;
+        --font-primary-color:#EA4F0D;
+        --font-nomal-color:#060000;
         --font-white-color:#fff;
         --font-placeholder-color:#DBDBDB;
         --font-message-color:#EB5757 ;
-        font-family: 'Brugty Font', 'S-CoreDream',sans-serif;
+        font-family:"Abril Fatface",sans-serif;
     }
 
     .a11y-hidden {
@@ -44,7 +40,7 @@ const GlobalStyles = createGlobalStyle`
         justify-content:center;
         align-items:center;
         height: 100vh;
-        background-color:#f5f5f5;
+        background-color:var(--back-color);
     }
     img {
         vertical-align: top;

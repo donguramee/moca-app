@@ -5,7 +5,12 @@ import {
   LabelStyle,
   Title,
 } from "../../components/form/Form.style";
-import { WrapperLoginEmail, LoginWrap, LoginImgWrap } from "./LoginPage.style";
+import {
+  WrapperLoginEmail,
+  LoginWrap,
+  LoginImgWrap,
+  IntroTxt,
+} from "./LoginPage.style";
 
 const LoginPage = () => {
   return (
@@ -15,7 +20,7 @@ const LoginPage = () => {
       </Helmet>
       <WrapperLoginEmail>
         <LoginImgWrap>
-          <p>Hello</p>
+          <IntroTxt>Welcome :)</IntroTxt>
         </LoginImgWrap>
 
         <LoginWrap>
