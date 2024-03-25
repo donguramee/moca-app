@@ -16,24 +16,27 @@ export const WrapEmailPw = styled.div`
 
 export const LabelStyle = styled.label`
   color: #767676;
-  font-size: 12px;
+  font-size: 15px;
   display: flex;
   align-items: center;
+  margin: 20px 0 7px 0;
+  font-family: "Pretendard-Medium";
 `;
 
 export const InputStyle = styled.input`
-  font-family: "S-CoreDream", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   border: none;
   padding: 6px 0 6px 6px;
+  /* width: 100%; */
   border-bottom: 1px solid #dbdbdb;
+  color: var(--font-gray-color);
 
   &:focus {
-    outline: none;
-    border-color: var(--primary-disabled-color);
-    // 비밀번호가 틀렸으면 색상 바꿔야함
+    outline: 1px solid var(--primary-disabled-color);
+    border-radius: 4px;
   }
   &::placeholder {
-    color: #dbdbdb;
+    color: #b8b8b8;
   }
 `;
 
@@ -53,23 +56,25 @@ export const Title = styled.h1`
   display: block;
   text-align: center;
   font-family: "Roboto";
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 50px;
+  font-weight: 200;
   margin-bottom: 16px;
+  font-family: "Calfinedemo";
+  color: var(--font-gray-color);
 `;
 
 export const Submitbutton = styled.button`
-  font-family: "S-CoreDream", sans-serif;
+  font-family: "Pretendard-Medium", sans-serif;
   font-size: 14px;
-  background-color: var(--primary-color);
+  background-color: var(--primary-disabled-color);
   opacity: ${({ disabled }) => (disabled === true ? 0.3 : 1)};
   display: block;
   width: 100%;
   color: white;
-  height: 48px;
-  border-radius: 44px;
+  height: 40px;
+  border-radius: 10px;
   border: none;
-  margin-top: 14px;
+  /* margin-top: 14px; */
   transition: 0.5s;
   border: 2px solid white;
 
@@ -77,10 +82,11 @@ export const Submitbutton = styled.button`
   &:hover {
     transition: 0.5s;
     color: ${({ disabled }) =>
-      disabled === true ? "" : "var(--primary-color)"};
+      disabled === true ? "" : "var(--primary-disabled-color)"};
     background-color: ${({ disabled }) => (disabled === true ? "" : "white")};
     border: 2px solid
-      ${({ disabled }) => (disabled === true ? "" : "var(--primary-color)")};
+      ${({ disabled }) =>
+        disabled === true ? "" : "var(--primary-disabled-color)"};
   }
 `;
 

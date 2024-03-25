@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import BrugtyDemoRegular from "../assets/fonts/BrugtyDemoRegular.ttf";
+import Calfinedemo from "../assets/fonts/Calfinedemo.otf";
 
 const GlobalStyles = createGlobalStyle`
 
@@ -10,18 +12,52 @@ const GlobalStyles = createGlobalStyle`
     src: url('https://fonts.gstatic.com/s/abrilfatface/v13/zOL64pLDlL1D99S8g8PtiKVggez9NBs2QBBbGUYlhMRdwrM.ttf') format('ttf');
   }
 
+@font-face {
+        font-family: 'BrugtyDemoRegular';
+        src: url(${BrugtyDemoRegular}) format('truetype');
+}
+ @font-face {
+        font-family: 'Calfinedemo';
+        src: url(${Calfinedemo}) format('truetype');
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+    
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    
+    font-weight: 700;
+    font-style: normal;
+}
+
+
     :root {
         /* 메인 색상 */
         --primary-color:#E6DCC1;
-        --back-color:#f2f2f2;
-        --primary-disabled-color:#B9D2AB;
+        --secondary-color:#FD8F52;
+        --back-color:#ececec;
+        --primary-disabled-color:#EA4F0D;
+        --primary-button-color:#006542;
         /* 폰트 색상 */
         --font-primary-color:#EA4F0D;
-        --font-nomal-color:#060000;
+        --font-nomal-color:#313131;
+        --font-gray-color:#696969;
         --font-white-color:#fff;
         --font-placeholder-color:#DBDBDB;
         --font-message-color:#EB5757 ;
-        font-family:"Abril Fatface",sans-serif;
+        font-family:"Abril Fatface","BrugtyDemoRegular","Calfinedemo","Pretendard-Regular",sans-serif;
     }
 
     .a11y-hidden {
@@ -47,14 +83,21 @@ const GlobalStyles = createGlobalStyle`
     }
     a{
         text-decoration: none;
-        color:inherit;
-        font-family: 'S-CoreDream', sans-serif;
+        color:var(--font-nomal-color);
+        font-family: 'Pretendard-Regular', sans-serif;
+    }
+    p, span{
+        text-decoration: none;
+        color:var(--font-nomal-color);
+        font-family: 'Pretendard-Regular', sans-serif;
+        margin: 0;
+        padding: 0;
     }
     button{
         border:none;
         background-color:inherit;
         padding:0;
-        font-family: 'S-CoreDream', sans-serif;
+        font-family: 'Pretendard-Regular', sans-serif;
     }
     input{
         &:-webkit-autofill,
@@ -66,7 +109,7 @@ const GlobalStyles = createGlobalStyle`
             -webkit-box-shadow: 0 0 0px 1000px 'var(--white);' inset !important;
             -webkit-text-fill-color: 'var(--white);' !important;
         }
-        font-family: 'S-CoreDream', sans-serif;
+        font-family: 'Pretendard-Regular', sans-serif;
         
        
     }
