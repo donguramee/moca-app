@@ -26,13 +26,13 @@ export const LabelStyle = styled.label`
 export const InputStyle = styled.input`
   font-family: "Pretendard-Regular", sans-serif;
   border: none;
-  padding: 6px 0 6px 6px;
-  /* width: 100%; */
+  padding: 6px 0 6px 3px;
+  /* width: auto; */
   border-bottom: 1px solid #dbdbdb;
   color: var(--font-gray-color);
 
   &:focus {
-    outline: 1px solid var(--primary-disabled-color);
+    outline: 1.5px solid var(--primary-input-color);
     border-radius: 4px;
   }
   &::placeholder {
@@ -50,6 +50,7 @@ export const Incorrect = styled.span`
   box-sizing: border-box;
   color: #eb5757;
   font-size: 12px;
+  margin-top: 4px;
 `;
 
 export const Title = styled.h1`
@@ -74,7 +75,6 @@ export const Submitbutton = styled.button`
   height: 40px;
   border-radius: 10px;
   border: none;
-  /* margin-top: 14px; */
   transition: 0.5s;
   border: 2px solid white;
 
@@ -87,6 +87,11 @@ export const Submitbutton = styled.button`
     border: 2px solid
       ${({ disabled }) =>
         disabled === true ? "" : "var(--primary-disabled-color)"};
+  }
+
+  &:disabled {
+    background-color: var(--primary-color);
+    color: var(--font-gray-color);
   }
 `;
 

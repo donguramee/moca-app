@@ -49,13 +49,14 @@ const GlobalStyles = createGlobalStyle`
         --secondary-color:#FD8F52;
         --back-color:#ececec;
         --primary-disabled-color:#EA4F0D;
+        --primary-input-color:#FFBD71;
         --primary-button-color:#006542;
         /* 폰트 색상 */
         --font-primary-color:#EA4F0D;
         --font-nomal-color:#313131;
         --font-gray-color:#696969;
         --font-white-color:#fff;
-        --font-placeholder-color:#DBDBDB;
+        --font-placeholder-color:#b8b8b8;
         --font-message-color:#EB5757 ;
         font-family:"Abril Fatface","BrugtyDemoRegular","Calfinedemo","Pretendard-Regular",sans-serif;
     }
