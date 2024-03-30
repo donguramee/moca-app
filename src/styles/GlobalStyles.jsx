@@ -90,7 +90,7 @@ const GlobalStyles = createGlobalStyle`
     p, span{
         text-decoration: none;
         color:var(--font-nomal-color);
-        font-family: 'Pretendard-Regular', sans-serif;
+        font-family: 'Pretendard-Regular','Pretendard-Bold', sans-serif;
         margin: 0;
         padding: 0;
     }

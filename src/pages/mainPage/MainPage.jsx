@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { InputStyle, LabelStyle } from "../../components/form/Form.style";
+import { InputStyle } from "../../components/form/Form.style";
 import Nav from "../../components/nav/Nav";
 
 import {
@@ -16,8 +16,8 @@ const MainPage = () => {
       <Helmet>
         <title>Moca | 메인</title>
       </Helmet>
-      <Nav />
       <MainWrapper>
+        <Nav />
         <InfoWrapper>
           <SearchInput>
             <InputStyle

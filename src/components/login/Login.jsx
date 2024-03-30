@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   InputStyle,
   LabelStyle,
@@ -9,18 +10,16 @@ import {
 import {
   WrapperLoginEmail,
   LoginWrap,
-  LoginImgWrap,
-  IntroTxt,
-  IntroImg,
   LoginButtonWrapper,
   ButtonWrap,
   SingnInTxt,
   LoginInputWrapper,
   SocialLoginButton,
 } from "./Login.style";
-import hello from "../../assets/images/hello.jpg";
-
-const Login = () => {
+import { auth } from "../../firebase/fbconfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
+const Login = ({ moveImgWrapRight }) => {
+  const navigate = useNavigate();
   //로그인버튼 비활성화
   const [disabled, setDisabled] = useState(true);
   //인풋창 상태
@@ -79,17 +78,32 @@ const Login = () => {
     }
     setTestAccount(!testAccount); // 체크 상태 업데이트
   };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      // Firebase 인증을 사용한 로그인 시도
+      await signInWithEmailAndPassword(auth, email, pw);
+      // 로그인 성공: 메인 페이지로 이동
+      navigate("/main");
+    } catch (error) {
+      // 로그인 실패: 에러 처리
+      setLoginErorrMessage(true);
+      console.error("로그인 실패:", error.message);
+    }
+  };
+
+  //초기화
+  const resetInput = () => {
+    setEmail("");
+    setPw("");
+    setEmailErrorMessage(false);
+    setLoginErorrMessage(false);
+  };
+
   return (
     <>
       <WrapperLoginEmail>
-        <LoginImgWrap>
-          <IntroTxt>
-            Welcome Back <br />
-            Mo.ca
-          </IntroTxt>
-          <IntroImg src={hello} />
-        </LoginImgWrap>
-
         <LoginWrap>
           <Title>Log.in</Title>
           <LoginInputWrapper>
@@ -132,7 +146,9 @@ const Login = () => {
           </LoginInputWrapper>
 
           <LoginButtonWrapper>
-            <Submitbutton disabled={disabled}>Log In</Submitbutton>
+            <Submitbutton disabled={disabled} onClick={handleLogin}>
+              Log In
+            </Submitbutton>
           </LoginButtonWrapper>
           <ButtonWrap>
             <SocialLoginButton bordercolor={"#F2C94C"} socialimage={"kakao"}>
@@ -142,7 +158,14 @@ const Login = () => {
               구글 계정으로 로그인
             </SocialLoginButton>
           </ButtonWrap>
-          <SingnInTxt>모카가 처음이신가요? 가입하기</SingnInTxt>
+          <SingnInTxt
+            onClick={() => {
+              resetInput();
+              moveImgWrapRight();
+            }}
+          >
+            모카가 처음이신가요? 가입하기
+          </SingnInTxt>
         </LoginWrap>
       </WrapperLoginEmail>
     </>

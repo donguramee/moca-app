@@ -7,40 +7,14 @@ export const WrapperLoginEmail = styled.section`
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  width: 70rem;
+  width: 100%;
   height: 35rem;
   border-radius: 10px;
   overflow: hidden;
 `;
-export const LoginImgWrap = styled.section`
-  background-color: var(--primary-color);
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-export const IntroTxt = styled.p`
-  font-family: "Calfinedemo";
-  font-weight: 400;
-  font-size: 70px;
-  color: var(--font-primary-color);
-  text-align: center;
-  margin-bottom: 30px;
-`;
-export const IntroImg = styled.img`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  width: 300px;
-  height: auto;
-  box-sizing: border-box;
-`;
 
 export const LoginWrap = styled.section`
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;

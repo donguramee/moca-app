@@ -1,16 +1,66 @@
 import styled from "styled-components";
 
 export const NavWrapper = styled.section`
-  width: 100vw;
-  height: 50px;
-  background-color: red;
-  opacity: 0.5;
-  position: fixed;
-  top: 0; /* 화면 맨 위에 고정 */
-  left: 0; /* 화면 왼쪽에 고정 */
-  right: 0; /* 화면 오른쪽에 고정 */
+  width: 70px;
+  height: 100vh;
+  background-color: var(--font-white-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width 0.3s ease;
+  overflow: hidden; // 확장되지 않은 부분에서 내용 숨김
+
+  &:hover {
+    width: 190px; // 호버 시 너비 확장
+  }
 `;
-export const NavIcon = styled.div`
-  width: 30px;
-  height: 30px;
+
+export const NavLists = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  cursor: pointer;
+`;
+
+export const NavList = styled.li`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 180px;
+  height: 80px;
+  padding: 5px;
+  margin: 20px 0;
+  border-radius: 20px;
+  color: var(--font-normal-color);
+  font-size: 15px;
+
+  p {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s ease 0.3s;
+  }
+
+  ${NavWrapper}:hover & p {
+    font-family: "Pretendard-Bold";
+    color: var(--font-gray-color);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+    &:hover {
+      color: var(--secondary-color);
+    }
+  }
+`;
+
+export const NavIcon = styled.img`
+  width: 25px;
+  height: auto;
+  margin-bottom: 15px;
+  transition: filter 0.3s ease;
 `;

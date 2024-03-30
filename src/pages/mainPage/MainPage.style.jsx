@@ -3,18 +3,17 @@ import styled from "styled-components";
 export const MainWrapper = styled.section`
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 50px);
+  height: 100vh;
   width: 100vw;
-  margin-top: 50px;
 `;
 export const InfoWrapper = styled.div`
-  height: auto;
-  width: 100%;
-  border: 1px solid;
+  height: 100%;
+  width: 500px;
+  background-color: blue;
 `;
 export const MapWrapper = styled.div`
-  height: auto;
-  width: 2800px;
+  height: 100%;
+  width: 60%;
 `;
 
 export const SearchInput = styled.div`
