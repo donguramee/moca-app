@@ -72,12 +72,14 @@ const GlobalStyles = createGlobalStyle`
         position: absolute;
     }
     ${reset}
+    
     body {
         display:flex;
         justify-content:center;
         align-items:center;
         height: 100vh;
         background-color:var(--back-color);
+        
     }
     img {
         vertical-align: top;

@@ -1,14 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { InputStyle } from "../../components/form/Form.style";
+import Info from "../../components/info/Info";
+import Map from "../../components/map/Map";
 import Nav from "../../components/nav/Nav";
 
-import {
-  MainWrapper,
-  InfoWrapper,
-  MapWrapper,
-  SearchInput,
-} from "./MainPage.style";
+import { MainWrapper } from "./MainPage.style";
 
 const MainPage = () => {
   return (
@@ -18,15 +14,8 @@ const MainPage = () => {
       </Helmet>
       <MainWrapper>
         <Nav />
-        <InfoWrapper>
-          <SearchInput>
-            <InputStyle
-              type="email"
-              placeholder="E-mail을 입력해주세요."
-            ></InputStyle>
-          </SearchInput>
-        </InfoWrapper>
-        <MapWrapper></MapWrapper>
+        <Info />
+        <Map />
       </MainWrapper>
     </>
   );

@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD0JRpmRpirqq_PDEe3kjV5fefx7up_3BI",
-  authDomain: "moca-app-3a306.firebaseapp.com",
-  projectId: "moca-app-3a306",
-  storageBucket: "moca-app-3a306.appspot.com",
-  messagingSenderId: "784560070506",
-  appId: "1:784560070506:web:652392caedc9c8802e4f13",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGE_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Firebase 초기화

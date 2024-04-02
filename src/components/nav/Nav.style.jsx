@@ -9,9 +9,10 @@ export const NavWrapper = styled.section`
   justify-content: space-between;
   transition: width 0.3s ease;
   overflow: hidden; // 확장되지 않은 부분에서 내용 숨김
+  border-right: 0.5px solid var(--font-gray-color);
 
   &:hover {
-    width: 190px; // 호버 시 너비 확장
+    width: 160px; // 호버 시 너비 확장
   }
 `;
 
@@ -20,7 +21,6 @@ export const NavLists = styled.ul`
   flex-direction: column;
   align-items: center;
   width: 150px;
-  cursor: pointer;
 `;
 
 export const NavList = styled.li`
@@ -36,11 +36,17 @@ export const NavList = styled.li`
   border-radius: 20px;
   color: var(--font-normal-color);
   font-size: 15px;
+  cursor: pointer;
 
   p {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    margin-left: 40px;
+    justify-content: center;
+    width: 40%;
+
+    margin-left: 20px;
+    margin-bottom: 15px;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0s ease 0.3s;
@@ -62,5 +68,6 @@ export const NavIcon = styled.img`
   width: 25px;
   height: auto;
   margin-bottom: 15px;
+  margin-left: 15px;
   transition: filter 0.3s ease;
 `;
