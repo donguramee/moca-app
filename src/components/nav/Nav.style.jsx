@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const NavWrapper = styled.section`
-  width: 70px;
-  height: 100vh;
+  width: 90px;
+  height: 100%;
   background-color: var(--font-white-color);
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@ export const NavWrapper = styled.section`
   border-right: 0.5px solid var(--font-gray-color);
 
   &:hover {
-    width: 160px; // 호버 시 너비 확장
+    width: 230px; // 호버 시 너비 확장
   }
 `;
 

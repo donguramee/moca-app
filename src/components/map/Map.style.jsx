@@ -2,5 +2,5 @@ import styled from "styled-components";
 
 export const KakaoMap = styled.div`
   height: 100%;
-  width: 70vw;
+  width: 100%;
 `;

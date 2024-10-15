@@ -60,6 +60,17 @@ const GlobalStyles = createGlobalStyle`
         --font-message-color:#EB5757 ;
         font-family:"Abril Fatface","BrugtyDemoRegular","Calfinedemo","Pretendard-Regular",sans-serif;
     }
+  
+    .info-title {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    color: var(--font-nomal-color);
+    text-align: center;
+    font-family: 'Pretendard-Medium'
+    border-radius: 4px;
+    padding: 4px 10px;
+}
 
     .a11y-hidden {
         clip: rect(1px, 1px, 1px, 1px);

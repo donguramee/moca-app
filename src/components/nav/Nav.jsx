@@ -1,7 +1,7 @@
 import React from "react";
 import { NavWrapper, NavIcon, NavLists, NavList } from "./Nav.style";
 import icon from "../../assets/images/icon.svg";
-import bar from "../../assets/images/bar.svg";
+import people from "../../assets/images/people.png";
 import star from "../../assets/images/star.svg";
 import map from "../../assets/images/map.svg";
 
@@ -9,7 +9,7 @@ const Nav = () => {
   return (
     <NavWrapper>
       <NavLists>
-        <NavList style={{ marginBottom: "100px" }}>
+        <NavList style={{ paddingBottom: "100px" }}>
           <NavIcon src={icon} />
           <p>Home</p>
         </NavList>
@@ -22,8 +22,8 @@ const Nav = () => {
           <p>My List</p>
         </NavList>
         <NavList style={{ marginTop: "330px" }}>
-          <NavIcon src={bar} />
-          <p>More</p>
+          <NavIcon src={people} />
+          <p>Log out</p>
         </NavList>
       </NavLists>
     </NavWrapper>
