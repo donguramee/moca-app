@@ -3,11 +3,11 @@ import CafeListItem from "../cafeList/CafeListItem";
 import Search from "../search/Search";
 import { InfoWrapper, CafeListWrapper, ListTitle } from "./Info.style";
 
-const Info = () => {
+const Info = ({ onSearch }) => {
   return (
     <>
       <InfoWrapper>
-        <Search />
+        <Search onSearch={onSearch} />
         <ListTitle>주변의 카페</ListTitle>
         <CafeListWrapper>
           <CafeListItem />

@@ -58,19 +58,9 @@ const GlobalStyles = createGlobalStyle`
         --font-white-color:#fff;
         --font-placeholder-color:#b8b8b8;
         --font-message-color:#EB5757 ;
-        font-family:"Abril Fatface","BrugtyDemoRegular","Calfinedemo","Pretendard-Regular",sans-serif;
+        font-family:"Abril Fatface","Calfinedemo","Pretendard-Regular",sans-serif;
     }
-  
-    .info-title {
-    display: flex;
-    align-items: center;
-    background: #fff;
-    color: var(--font-nomal-color);
-    text-align: center;
-    font-family: 'Pretendard-Medium'
-    border-radius: 4px;
-    padding: 4px 10px;
-}
+
 
     .a11y-hidden {
         clip: rect(1px, 1px, 1px, 1px);
@@ -103,7 +93,7 @@ const GlobalStyles = createGlobalStyle`
     p, span{
         text-decoration: none;
         color:var(--font-nomal-color);
-        font-family: 'Pretendard-Regular','Pretendard-Bold', sans-serif;
+        font-family: 'Pretendard-Regular';
         margin: 0;
         padding: 0;
     }
@@ -127,6 +117,18 @@ const GlobalStyles = createGlobalStyle`
         
        
     }
+      
+    .info-title {
+    display: flex;
+    background: var(--font-primary-color);
+    color: #fff;
+    text-align: center;
+    height: 24px;
+    line-height:22px;
+    border-radius:4px;
+    padding:4px 10px 0;
+    box-shadow: 0 2px 2px #888;
+}
 `;
 
 export default GlobalStyles;
