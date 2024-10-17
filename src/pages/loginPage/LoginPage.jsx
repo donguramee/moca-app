@@ -36,7 +36,6 @@ const LoginPage = () => {
         <title>Moca | 로그인</title>
       </Helmet>
       <LoginImgWrap style={imgWrapStyle}>
-        {/* translateX에 따라 조건부 렌더링 */}
         {translateX === 0 ? (
           <>
             <IntroTxt>
