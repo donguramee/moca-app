@@ -21,19 +21,6 @@ const Map = () => {
         // Places 서비스 객체 생성
         const ps = new kakao.maps.services.Places();
 
-        searchPlaces();
-
-        function searchPlaces() {
-          const keywaord = document.getElementById("keyword").ariaValueMax;
-
-          if (!keywaord.replace(/^\s+|\s+$/g, "")) {
-            alert("가고싶은 카페 혹은 동네를 입력해주세요!");
-            return false;
-          }
-          // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-          ps.keywordSearch(keyword, placesSearchCB);
-        }
-
         // 검색 결과 콜백 함수
         const placesSearchCB = (data, status) => {
           if (status === kakao.maps.services.Status.OK) {
