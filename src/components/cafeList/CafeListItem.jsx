@@ -12,12 +12,12 @@ import {
 
 import heart from "../../assets/images/heart.svg";
 
-const CafeListItem = () => {
+const CafeListItem = ({ place }) => {
   return (
     <ListItem>
       <ItemImage></ItemImage>
       <ItemInfo>
-        <Cafename>동그라미 카페</Cafename>
+        <Cafename>{place.place_name}</Cafename>
         <Cafeinfo>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         </Cafeinfo>

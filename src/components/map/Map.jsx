@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { KakaoMap } from "./Map.style";
 import markerImageSrc from "../../assets/images/marker.png";
 
-const Map = () => {
+const Map = ({ searchValue, setSearchResults }) => {
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
@@ -17,29 +17,13 @@ const Map = () => {
           level: 3,
         };
         const map = new kakao.maps.Map(mapContainer, mapOptions);
-
-        // Places 서비스 객체 생성
         const ps = new kakao.maps.services.Places();
-
-        // 검색 결과 콜백 함수
-        const placesSearchCB = (data, status) => {
-          if (status === kakao.maps.services.Status.OK) {
-            // 기존 마커 초기화
-            mapMarkers.forEach((marker) => marker.setMap(null));
-            mapMarkers = [];
-
-            // 검색 결과에 따라 마커 표시
-            data.forEach((place) => {
-              displayMarker(place);
-            });
-          }
-        };
-
-        // 지도에 마커를 표시하는 함수
         let mapMarkers = [];
-        let currentCustomOverlay = null; // 현재 열린 인포윈도우를 저장할 변수
+        let currentCustomOverlay = null;
+        let debounceTimer; // 디바운스 타이머
+
         const displayMarker = (place) => {
-          const imageSize = new kakao.maps.Size(24, 36); // 마커 이미지의 크기
+          const imageSize = new kakao.maps.Size(24, 36);
           const imageOption = { offset: new kakao.maps.Point(12, 32) };
           const markerImage = new kakao.maps.MarkerImage(
             markerImageSrc,
@@ -47,78 +31,88 @@ const Map = () => {
             imageOption
           );
 
-          // 커스텀 마커를 생성하고 지도에 표시합니다
           const marker = new kakao.maps.Marker({
-            map: map,
+            map,
             position: new kakao.maps.LatLng(place.y, place.x),
-            image: markerImage, // 커스텀 마커 이미지 설정
+            image: markerImage,
           });
           mapMarkers.push(marker);
 
-          // 인포윈도우 생성
           const customOverlay = new kakao.maps.CustomOverlay({
-            content: `
-            <div class="info-title">${place.place_name}</div>`,
-            map: null, // 처음에는 맵에 표시하지 않음
-            position: marker.getPosition(), // 마커 위치에 표시
+            content: `<div class="info-title">${place.place_name}</div>`,
+            position: marker.getPosition(),
             yAnchor: 2.4,
           });
 
-          // 마커 클릭 이벤트
-          kakao.maps.event.addListener(marker, "click", () => {
-            // 현재 열린 인포윈도우가 있으면 닫음
+          kakao.maps.event.addListener(marker, "mouseover", () => {
             if (currentCustomOverlay) {
-              currentCustomOverlay.setMap(null); // 현재 오버레이 닫기
+              currentCustomOverlay.setMap(null);
             }
+            customOverlay.setMap(map);
+            currentCustomOverlay = customOverlay;
+          });
 
-            // 클릭한 인포윈도우가 열려있지 않으면 열고, 이미 열려 있으면 닫음
-            if (currentCustomOverlay !== customOverlay) {
-              customOverlay.setMap(map); // 현재 오버레이 열기
-              currentCustomOverlay = customOverlay; // 현재 열린 인포윈도우 업데이트
-            } else {
-              currentCustomOverlay = null; // 인포윈도우가 닫힌 상태로 업데이트
-            }
+          kakao.maps.event.addListener(marker, "mouseout", () => {
+            customOverlay.setMap(null);
           });
         };
 
-        // 카테고리로 장소 검색 함수
-        const searchCategory = () => {
-          const center = map.getCenter();
-          ps.categorySearch("CE7", placesSearchCB, {
-            location: center,
-            useMapBounds: true,
+        const updateSearchResults = (data) => {
+          const bounds = map.getBounds();
+          const visiblePlaces = data.filter((place) => {
+            const position = new kakao.maps.LatLng(place.y, place.x);
+            return bounds.contain(position);
           });
+          setSearchResults(visiblePlaces); // 현재 화면에 보이는 마커만 프롭스로 전달
         };
 
-        // 사용자의 현재 위치를 기반으로 지도 중심 설정 및 검색 실행
+        const placesSearchCB = (data, status) => {
+          if (status === kakao.maps.services.Status.OK) {
+            mapMarkers.forEach((marker) => marker.setMap(null));
+            mapMarkers = [];
+            data.forEach((place) => displayMarker(place));
+            updateSearchResults(data); // 전체 검색 결과를 사용하여 현재 화면에 보이는 마커 업데이트
+          } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+            alert("검색하신 카페가 없어요.");
+          }
+        };
+
+        const searchPlaces = (position) => {
+          if (position) {
+            ps.categorySearch("CE7", placesSearchCB, {
+              location: position,
+              useMapBounds: true,
+            });
+          }
+        };
+
+        // 지도 이동 이벤트 리스너 추가
+        kakao.maps.event.addListener(map, "dragend", () => {
+          clearTimeout(debounceTimer); // 기존 타이머 클리어
+          debounceTimer = setTimeout(() => {
+            const center = map.getCenter();
+            searchPlaces(center); // 0.5초 후에 데이터 검색
+          }, 500); // 0.5초 대기
+        });
+
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
               const lat = position.coords.latitude;
               const lon = position.coords.longitude;
               const locPosition = new kakao.maps.LatLng(lat, lon);
-
-              // 현재 위치로 지도 중심 이동
               map.setCenter(locPosition);
-
-              // 현재 위치에서 카테고리 검색 실행
-              searchCategory();
+              searchPlaces(locPosition); // 초기 위치에서 카페 검색
             },
             () => {
-              // 위치 정보 사용 불가 시 기본 위치로 설정하고 검색 실행
-              searchCategory();
+              map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667));
+              searchPlaces(map.getCenter()); // 초기 위치에서 카페 검색
             }
           );
-        } else {
-          // 브라우저에서 geolocation을 지원하지 않을 때 기본 위치로 검색
-          searchCategory();
         }
-
-        // 지도 중심이 변경될 때마다 새로운 위치로 검색 수행
-        kakao.maps.event.addListener(map, "center_changed", searchCategory);
       });
     };
-  }, []);
+  }, [searchValue, setSearchResults]);
 
   return <KakaoMap id="map" />;
 };
