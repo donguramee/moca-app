@@ -17,7 +17,12 @@ import {
   SocialLoginButton,
 } from "./Login.style";
 import { auth } from "../../firebase/fbconfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 const Login = ({ moveImgWrapRight }) => {
   const navigate = useNavigate();
   //로그인버튼 비활성화
@@ -28,6 +33,7 @@ const Login = ({ moveImgWrapRight }) => {
   //이메일 유효성
   const [emailValid, setEmailValid] = useState(false);
   const emailPattern = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.(com|net)$/;
+  const [userData, setUserData] = useState(null);
 
   //에러메세지
   const [emailErrorMessage, setEmailErrorMessage] = useState(false);
@@ -101,6 +107,31 @@ const Login = ({ moveImgWrapRight }) => {
     setLoginErorrMessage(false);
   };
 
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider(); // provider 구글 설정
+    try {
+      const data = await signInWithPopup(auth, provider); // 팝업창 띄워서 로그인
+      setUserData(data.user); // user data 설정
+      // 로그인 성공: 메인 페이지로 이동
+      navigate("/main");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleGithubLogin = async () => {
+    const provider = new GithubAuthProvider();
+    try {
+      const data = await signInWithPopup(auth, provider); // 팝업창 띄워서 로그인
+      setUserData(data.user); // user data 설정
+      // 로그인 성공: 메인 페이지로 이동
+      navigate("/main");
+      console.log("깃허브로그인 성공");
+    } catch (err) {
+      // console.log(err);
+      console.log("깃허브로그인 실패");
+    }
+  };
+
   return (
     <>
       <WrapperLoginEmail>
@@ -151,10 +182,18 @@ const Login = ({ moveImgWrapRight }) => {
             </Submitbutton>
           </LoginButtonWrapper>
           <ButtonWrap>
-            <SocialLoginButton bordercolor={"#F2C94C"} socialimage={"kakao"}>
+            <SocialLoginButton
+              bordercolor={"#767676"}
+              socialimage={"github"}
+              onClick={handleGithubLogin}
+            >
               카카오톡 계정으로 로그인
             </SocialLoginButton>
-            <SocialLoginButton bordercolor={"#767676"} socialimage={"google"}>
+            <SocialLoginButton
+              bordercolor={"#767676"}
+              socialimage={"google"}
+              onClick={handleGoogleLogin}
+            >
               구글 계정으로 로그인
             </SocialLoginButton>
           </ButtonWrap>

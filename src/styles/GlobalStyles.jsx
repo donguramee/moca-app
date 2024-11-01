@@ -120,14 +120,14 @@ const GlobalStyles = createGlobalStyle`
       
     .info-title {
     display: flex;
-    background: var(--font-primary-color);
+    background: var(--secondary-color);
     color: #fff;
     text-align: center;
     height: 24px;
     line-height:22px;
     border-radius:4px;
     padding:4px 10px 0;
-    box-shadow: 0 2px 2px #888;
+    box-shadow: 0 4px 4px #888;
 }
 `;
 

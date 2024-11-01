@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { KakaoMap } from "./Map.style";
-import markerImageSrc from "../../assets/images/marker.png";
+import unmarkerImageSrc from "../../assets/images/unmarker.png";
 
 const Map = ({ searchValue, setSearchResults }) => {
   useEffect(() => {
@@ -26,7 +26,7 @@ const Map = ({ searchValue, setSearchResults }) => {
           const imageSize = new kakao.maps.Size(24, 36);
           const imageOption = { offset: new kakao.maps.Point(12, 32) };
           const markerImage = new kakao.maps.MarkerImage(
-            markerImageSrc,
+            unmarkerImageSrc,
             imageSize,
             imageOption
           );
@@ -95,6 +95,16 @@ const Map = ({ searchValue, setSearchResults }) => {
           }, 500); // 0.5초 대기
         });
 
+        // searchValue가 변경될 때마다 지도 중심 업데이트
+        if (searchValue) {
+          const position = new kakao.maps.LatLng(
+            searchValue.lat,
+            searchValue.lng
+          ); // 위도와 경도 정보를 포함한 객체로 가정
+          map.setCenter(position);
+          searchPlaces(position); // 새로운 위치에서 카페 검색
+        }
+
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -106,7 +116,7 @@ const Map = ({ searchValue, setSearchResults }) => {
             },
             () => {
               map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667));
-              searchPlaces(map.getCenter()); // 초기 위치에서 카페 검색
+              searchPlaces(searchValue); // 초기 위치에서 카페 검색
             }
           );
         }

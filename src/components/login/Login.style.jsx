@@ -93,7 +93,7 @@ export const SocialLoginButton = styled.button`
         ? "#f3dfa3"
         : props.socialimage === "google"
         ? "#cac8c8"
-        : "#69b2dd"};
+        : "#767676"};
     border-color: transparent;
     color: #fff;
   }
